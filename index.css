@@ -1,3 +1,102 @@
-#h1tag{
-color: red;
+
+
+/* Full Page Settings */
+body{
+    width:100%;
+    height: 100%;
+}
+
+/* Header Styles */
+.Header {
+    border: 2px solid red;
+    display: flex;
+    justify-content: space-between; /* Logo on the left, navlist on the right */
+    align-items: center; /* Vertically center items */
+    background-color: #f4f4f4; /* Light gray background */
+    padding: 10px 20px; /* Padding inside the header */
+    border-bottom: 1px solid #ccc;
+    }
+
+.logoimg img {
+    width: 100px; /* Adjust logo size */
+}
+
+.navlist ul {
+    display: flex; /* Align navigation items horizontally */
+    list-style: none; /* Remove list bullets */
+    margin: 20px;
+    padding: 10px;
+}
+
+.navlist ul li {
+    padding: 10px 20px; /* Spacing around navigation items */
+    cursor: pointer;
+}
+
+.navlist ul li:hover {
+    background-color: #ddd; /* Highlight on hover */
+    border-radius: 5px;
+}
+
+/* Body Styles */
+.body {
+    border: 2px solid green;
+    padding: 20px; /* Add space around the body content */
+}
+
+.search {
+     /* Space between search bar and restaurant cards */
+    padding: auto;
+    display: flex;
+    font-weight: bold;
+}
+
+.restacontainer {
+    display: flex; /* Display restaurant cards in a row */
+    flex-wrap: wrap; /* Allow wrapping for cards */
+    gap: 10px;
+}
+
+.res-card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 4px;
+    background-color: rgb(220, 231, 235);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.res-logo{
+    width: 100%;
+}
+
+.filterbtn{
+    cursor: pointer;
+}
+
+.shimmercontainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards{
+    width: 250px;
+    height: 350px;
+    margin: 5px;
+    background-color: #f0f0f0;
+}
+
+.login{
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.filter{
+    display: flex;
 }
