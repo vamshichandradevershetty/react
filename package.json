@@ -1,0 +1,27 @@
+{
+  "name": "food-app",
+  "version": "1.0.0",
+  "description": "food-app",
+  "keywords": [
+    "first",
+    "project"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vamshichandradevershetty"
+  },
+  "license": "ISC",
+  "author": "vamshi",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
