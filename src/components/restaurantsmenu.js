@@ -2,48 +2,35 @@ import { useState,useEffect } from "react"
 import Shimmer from "./shimmer";
 import { useParams } from "react-router";
 import { Menu_Api } from "../utils/constants";
+import useRestaurentMenu from "../utils/useRestaurentMenu";
+import { RestaurantCategory } from "./RestaurantCategory";
+
 
 export const RestaurantsMenu =() =>{
 
     const {resid} = useParams();
     console.log(resid);
-    const [resMenu,setresMenu] =useState(null);
-    useEffect(()=>{
-        fetchMenu();
-    },[]);
-
-    const fetchMenu = async () =>{
-        console.log(Menu_Api)
-        
-        const data = await fetch(Menu_Api+resid+"&catalog_qa=undefined&submitAction=ENTER");
-        console.log(Menu_Api+resid);
-        console.log("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.3317842&lng=78.52976369999999&restaurantId=12046&catalog_qa=undefined&submitAction=ENTER")
-        const json = await data.json();
-        console.log(json.data);
-        setresMenu(json.data);
-    
-    }
-
-    console.log(resMenu?.cards?.[2]?.card?.card?.info)
-   
-    const {name,cuisines,costForTwoMessage} = resMenu?.cards?.[2]?.card?.card?.info;
-
+    const [showIndex,setshowIndex] = useState(null);
+    const resMenu = useRestaurentMenu(resid)
+ //   console.log(resMenu);
+//  console.log(resMenu?.cards?.[2]?.card?.card?.info)
+  //const {name,cuisines,costForTwoMessage} = resMenu?.cards?.[2]?.card?.card?.info;
   const Itemcards = resMenu?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card.itemCards;
+  //console.log(resMenu?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+  //console.log(Itemcards)
 
-  console.log(Itemcards)
-  
-    //if (resMenu === null) return <Shimmer/>;
-
-
-
-    return resMenu.length === 0? <Shimmer/> : (
-        <div>
-           <h2>{name}</h2>
-            <p>{cuisines.join(", ")}   {costForTwoMessage}</p>
-            <h3>Menu</h3>
-            <ul>{
-                Itemcards.map(items => <li key={items.card.info.id}>{items.card.info.name} - {"Rs."}{items.card.info.price/100 || items.card.info.defaultprice/100}</li>)
-            }</ul>
+  const catergories = resMenu?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c=>c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || c?.card?.card?.["@type"]=== "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory")
+  //console.log(catergories)
+    return resMenu === null ? <Shimmer/> : (
+        <div className="text-center">
+           <h2 className="font-bold my-10 text-2xl">{resMenu?.cards?.[2]?.card?.card?.info.name}</h2>
+            <p className="font-bold text-lg">{resMenu?.cards?.[2]?.card?.card?.info.cuisines.join(", ")}   {resMenu?.cards?.[2]?.card?.card?.info.costForTwoMessage}</p>
+            {catergories.map((category,index) => 
+              (<RestaurantCategory key={category?.card?.card.title}
+               data = {category?.card?.card} 
+               showItems={index === showIndex ? true : false}
+               setshowIndex = {()=>setshowIndex(index)}/>))}
+               
       </div>
     )
 //*/}
