@@ -26,16 +26,23 @@ const Body = () => {
         setfilteredRestaurent(json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
+    useEffect(() => {
+        console.log("Updated listOfRestaurent:", listOfRestaurent);
+    }, [listOfRestaurent]);
+
     const onlineStatus = useOnlineStatus();
 
     if(onlineStatus === false) return <h1>You're seems to be offline check internet connection</h1>
 
-    return listOfRestaurent.length === 0 ? <Shimmer/> : ( //this concept is conditional rendering
+    return  !listOfRestaurent || listOfRestaurent.length === 0 ? <Shimmer/> : ( //this concept is conditional rendering
         <div className="body">
             
             <div className="filter flex">
             <div className="search p-4 m-4 flex items-center ">
-                <input type='text' className='search p-2 m-1 border solid border-black' value={searchText} onChange={(e)=>{
+                <input type='text'
+                data-testid="searchText" 
+                className='search p-2 m-1 border solid border-black' value={searchText}
+                 onChange={(e)=>{
                     setSearchText(e.target.value)
                 }}/>
                 <button className="px-2 py-2 bg-gray-500 cursor-pointer rounded-lg" onClick={()=>{

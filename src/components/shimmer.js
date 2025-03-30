@@ -1,5 +1,6 @@
 const Shimmer = () => {
-    return (<div className="shimmercontainer">
+    return (<div data-testid="shimmercontainer"
+         className="shimmercontainer">
         <div className="cards"></div>
         <div className="cards"></div>
         <div className="cards"></div>

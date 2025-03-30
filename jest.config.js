@@ -196,3 +196,7 @@ const config = {
 };
 
 module.exports = config;
+module.exports = {
+  setupFilesAfterEnv: ["D:/practice JS/food-app/jest.setup.js"],
+  testEnvironment: "jsdom",
+};

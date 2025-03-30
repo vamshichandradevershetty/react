@@ -1,7 +1,7 @@
 const Restacard = (props) => {
     const {resdata} = props;
     return (
-        <div className="p-4 m-4 w-[250px] bg-gray-200 items-center rounded-lg hover:bg-gray-400">
+        <div data-testid="rescard" className="p-4 m-4 w-[250px] bg-gray-200 items-center rounded-lg hover:bg-gray-400">
             <img className="res-logo rounded-lg" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+resdata.info.cloudinaryImageId} alt="res-logo"></img>
             <h3 className="py-2 font-bold">{resdata.info.name}</h3>
             <h4>{resdata.info.cuisines.join(", ")}</h4>

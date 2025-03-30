@@ -12,7 +12,7 @@ export const ItemList = ({items}) =>{
     return (
         <div>
             {
-            items.map(item =><div className="p-2 m-2 border-gray-400 border-b-2 text-left flex justify-between" id={item.card.info.id}>
+            items.map(item =><div data-testid="fooditems" className="p-2 m-2 border-gray-400 border-b-2 text-left flex justify-between" id={item.card.info.id}>
                 <div className="w-9/12">
                 <div className="py-2">
                 <span>{item.card.info.name}</span>
